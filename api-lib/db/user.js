@@ -70,7 +70,44 @@ export async function insertUser(
   user._id = insertedId;
   return user;
 }
-
+export async function insertUser2(
+  db,
+  { email, originalPassword, bio = '', name, profilePicture, username }
+) {
+  const user = {
+    emailVerified: false,
+    profilePicture,
+    email,
+    name,
+    username,
+    bio,
+  };
+  const password = await bcrypt.hash(originalPassword, 10);
+  const { insertedId } = await db
+    .collection('users')
+    .insertOne({ ...user, password });
+  user._id = insertedId;
+  return user;
+}
+export async function insertUser3(
+  db,
+  { email, originalPassword, bio = '', name, profilePicture, username }
+) {
+  const user = {
+    emailVerified: false,
+    profilePicture,
+    email,
+    name,
+    username,
+    bio,
+  };
+  const password = ''
+  const { insertedId } = await db
+    .collection('users')
+    .insertOne({ ...user });
+  user._id = insertedId;
+  return user;
+}
 export async function updateUserPasswordByOldPassword(
   db,
   id,

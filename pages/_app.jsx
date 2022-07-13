@@ -7,8 +7,10 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <Layout>
+
         <Component {...pageProps} />
         <Toaster />
+
       </Layout>
     </ThemeProvider>
   );
